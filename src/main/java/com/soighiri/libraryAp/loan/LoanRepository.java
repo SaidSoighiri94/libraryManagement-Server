@@ -1,4 +1,6 @@
 package com.soighiri.libraryAp.loan;
 
-public class LoanRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LoanRepository extends JpaRepository<LoanEntity, Long> {
 }

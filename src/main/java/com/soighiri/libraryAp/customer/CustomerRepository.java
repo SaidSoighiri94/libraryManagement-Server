@@ -1,4 +1,6 @@
 package com.soighiri.libraryAp.customer;
 
-public interface CustomerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
 }

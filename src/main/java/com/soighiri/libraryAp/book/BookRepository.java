@@ -1,4 +1,6 @@
 package com.soighiri.libraryAp.book;
 
-public interface BookRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BookRepository extends JpaRepository<BookEntity, Long> {
 }

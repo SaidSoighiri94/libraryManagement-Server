@@ -1,4 +1,7 @@
 package com.soighiri.libraryAp.athor;
 
-public interface AuthorRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AuthorRepository extends JpaRepository {
+
 }

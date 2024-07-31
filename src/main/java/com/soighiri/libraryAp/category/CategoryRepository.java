@@ -1,4 +1,6 @@
 package com.soighiri.libraryAp.category;
 
-public interface CategoryRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
 }
