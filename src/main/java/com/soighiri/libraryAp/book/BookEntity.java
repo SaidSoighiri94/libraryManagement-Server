@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Table(name = "BOOk")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

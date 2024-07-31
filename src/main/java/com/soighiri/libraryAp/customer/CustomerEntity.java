@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "CUSTOMER")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
