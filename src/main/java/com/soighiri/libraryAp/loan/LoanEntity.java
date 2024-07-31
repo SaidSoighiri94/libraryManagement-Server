@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -19,17 +19,20 @@ public class LoanEntity {
     private Long idLoan;
 
     @ManyToOne
-    @JoinColumn(name = "bookId")
+    @JoinColumn(name = "book_id")
     private BookEntity book;
 
     @ManyToOne
-    @JoinColumn(name = "customerID")
+    @JoinColumn(name = "customer_id")
     private CustomerEntity customer;
 
-    @Temporal(TemporalType.DATE)
-    private Date beginDate;
+    @Column(name = "begin_date", nullable = false)
+    private LocalDate beginDate;
 
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
-    private String status;
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private LoanStatus status;
 }

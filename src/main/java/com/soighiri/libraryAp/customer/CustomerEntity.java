@@ -16,18 +16,17 @@ import java.util.List;
 public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable = true, nullable = false, updatable = true)
+    @Column(updatable = false, nullable = false)
     private Long customerId;
 
-    private String customerFirstName;
-    private String customerLastName;
-    private String customerEmail;
-    private String customerPhone;
-    private String customerAddress;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
+    private String address;
     private String job;
-    private Date customerBirthDate;
-
-    @Temporal(TemporalType.DATE)
+    private Date birthDate;
+    @Column(name = "dateCreation", nullable = false)
     private Date customerCreationDate;
 
     @OneToMany(mappedBy = "customer")
