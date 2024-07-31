@@ -16,7 +16,7 @@ import java.util.List;
 public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false, nullable = false)
+    @Column(name = "customer_id", updatable = false, nullable = false)
     private Long customerId;
 
     private String firstName;
@@ -26,9 +26,8 @@ public class CustomerEntity {
     private String address;
     private String job;
     private Date birthDate;
-    @Column(name = "dateCreation", nullable = false)
     private Date customerCreationDate;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<LoanEntity> loanEntities;
 }

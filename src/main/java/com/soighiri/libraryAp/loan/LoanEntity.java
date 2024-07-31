@@ -14,17 +14,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoanEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idLoan;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private BookEntity book;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private CustomerEntity customer;
+    @EmbeddedId
+    private LoanId pk = new LoanId();
 
     @Column(name = "begin_date", nullable = false)
     private LocalDate beginDate;
@@ -35,4 +27,14 @@ public class LoanEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private LoanStatus status;
+
+    @ManyToOne
+    @MapsId("book")
+    @JoinColumn(name = "book_id")
+    private BookEntity book;
+
+    @ManyToOne
+    @MapsId("customer")
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customer;
 }
