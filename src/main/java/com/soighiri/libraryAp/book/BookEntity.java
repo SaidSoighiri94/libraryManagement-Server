@@ -1,6 +1,6 @@
 package com.soighiri.libraryAp.book;
 
-import com.soighiri.libraryAp.athor.AuthorEntity;
+import com.soighiri.libraryAp.author.AuthorEntity;
 import com.soighiri.libraryAp.category.CategoryEntity;
 import com.soighiri.libraryAp.loan.LoanEntity;
 import jakarta.persistence.*;

@@ -1,4 +1,4 @@
-package com.soighiri.libraryAp.athor;
+package com.soighiri.libraryAp.author;
 
 import com.soighiri.libraryAp.book.BookEntity;
 import jakarta.persistence.*;
@@ -13,20 +13,27 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class AuthorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "author_id", nullable = false,unique = true,updatable = false)
+    @Column(name = "author_id", nullable = false, unique = true, updatable = false)
     private Long authorId;
+
+    @Column(name = "author_first_name", nullable = false)
     private String authorFirstName;
+
+    @Column(name = "author_last_name", nullable = false)
     private String authorLastName;
+
+    @Column(name = "author_email", nullable = false, unique = true)
     private String authorEmail;
+
+    @Column(name = "author_address")
     private String authorAddress;
+
+    @Column(name = "biography")
     private String biography;
-    @OneToMany(mappedBy ="author")
+
+    @OneToMany(mappedBy = "author")
     private List<BookEntity> books;
-
-
 }
