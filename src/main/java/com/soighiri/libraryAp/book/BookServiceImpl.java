@@ -44,4 +44,24 @@ public class BookServiceImpl implements BookService {
     public List<BookEntity> getAllBooks() {
         return bookRepository.findAll();
     }
+
+    @Override
+    public BookEntity getBookByTitle(String title) {
+        return bookRepository.findByTitle(title);
+    }
+
+    @Override
+    public List<BookEntity> getBooksByAuthor(String author) {
+        return bookRepository.findByAuthor(author);
+    }
+
+    @Override
+    public List<BookEntity> getBooksByTitleAndAuthor(String title, String author) {
+        return bookRepository.findBooksByTitleAndAuthor(title, author);
+    }
+
+    @Override
+    public List<BookEntity> getBooksByTitleOrAuthor(String title, String author) {
+        return bookRepository.findBooksByTitleOrAuthor(title, author);
+    }
 }

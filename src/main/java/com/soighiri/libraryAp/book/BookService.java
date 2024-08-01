@@ -9,4 +9,9 @@ public interface BookService {
     void  deleteBookById(Long bookId);
     BookEntity getBookById(Long bookId);
     List<BookEntity> getAllBooks();
+    BookEntity getBookByTitle(String title);
+    List<BookEntity> getBooksByAuthor(String author);
+    List<BookEntity> getBooksByTitleAndAuthor(String title, String author);
+    List<BookEntity> getBooksByTitleOrAuthor(String title, String author);
+
 }
