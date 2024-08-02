@@ -10,7 +10,7 @@ import java.util.List;
 public interface LoanRepository extends JpaRepository<LoanEntity, Long> {
 
     // Recherche de tous les prêts dont la date de fin est antérieure à une date donnée.
-    List<LoanEntity> findByEndDateBefore(LocalDate maxEnDate);
+    List<LoanEntity> findByEndDateBefore(LocalDate maxEndDate);
 
     // Recherche de tous les prêts dont la date de fin est postérieure à une date donnée.
     List<LoanEntity> findByEndDateAfter(LocalDate minEnDate);
