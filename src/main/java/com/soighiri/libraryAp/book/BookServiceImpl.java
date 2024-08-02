@@ -47,7 +47,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookEntity getBookByTitle(String title) {
-        return bookRepository.findByTitle(title);
+        return bookRepository.findByTitleIgnoreCase(title);
+    }
+
+    @Override
+    public List<BookEntity> getBookByIsbn(String isbn) {
+        return bookRepository.findByIsbnIgnoreCase(isbn);
     }
 
     @Override
@@ -63,5 +68,15 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookEntity> getBooksByTitleOrAuthor(String title, String author) {
         return bookRepository.findBooksByTitleOrAuthor(title, author);
+    }
+
+    @Override
+    public List<BookEntity> getBookByCategoryName(String categoryName) {
+        return bookRepository.findBooksByCategory(categoryName);
+    }
+
+    @Override
+    public boolean checkIfExist(Long bookId) {
+        return bookRepository.existsById(bookId);
     }
 }

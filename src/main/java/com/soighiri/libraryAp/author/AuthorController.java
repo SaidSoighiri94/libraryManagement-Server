@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "api/library")
+@CrossOrigin
 public class AuthorController {
     private final AuthorService authorService;
 
@@ -33,11 +34,11 @@ public class AuthorController {
         }
     }
 
-    @PostMapping
+    @PostMapping(value = "/addAuthor")
     public AuthorEntity createAuthor(@RequestBody AuthorEntity author){
         return authorService.saveAuthor(author);
     }
-    @PutMapping(value = "/{authorId}")
+    @PutMapping(value = "/updateBook")
     public ResponseEntity<AuthorEntity> updateAuthor(@PathVariable("authorId") Long authorId, @RequestBody AuthorEntity author){
         AuthorEntity updatedAuthor = authorService.updateAuthor(authorId, author);
         return ResponseEntity.ok(updatedAuthor);

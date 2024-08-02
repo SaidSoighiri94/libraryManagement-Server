@@ -7,7 +7,10 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<BookEntity, Long> {
-    BookEntity findByTitle(String title);
+    BookEntity findByTitleIgnoreCase(String title);
+
+    List<BookEntity> findByIsbnIgnoreCase(String isbn);
+
     @Query("SELECT b FROM BookEntity b WHERE b.author.authorLastName =:author")
     List<BookEntity> findByAuthor(@Param("author") String author);
 
@@ -16,4 +19,9 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
     @Query("SELECT b FROM BookEntity b WHERE b.title = :title OR b.author.authorLastName = :author")
     List<BookEntity> findBooksByTitleOrAuthor(@Param("title") String title, @Param("author") String author);
+
+    @Query("SELECT b FROM BookEntity b WHERE b.category.categoryLabel = :categoryName")
+    List<BookEntity> findBooksByCategory(@Param("categoryName") String categoryName);
+
+
 }
