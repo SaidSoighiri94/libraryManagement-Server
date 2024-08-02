@@ -8,4 +8,8 @@ public interface LoanService {
     List<LoanEntity> findByDateAfter(LocalDate minEndDate);
     List<LoanEntity> getAllOpenLoansOfThisCustomer(String email, LoanStatus status);
     LoanEntity getLoanByCriteria(Long bookId, Long customerId,LoanStatus status);
-}
+
+    LoanEntity getOpenedLoan(Long customerId, Long loanId);
+    LoanEntity closedLoan(LoanEntity loan);
+    LoanEntity saveLoan(LoanEntity loan);
+    boolean checkIfLoanExists(Long bookId, Long customerId);}

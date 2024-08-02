@@ -31,4 +31,26 @@ public class LoanServiceImpl implements LoanService {
     public LoanEntity getLoanByCriteria(Long bookId, Long customerId, LoanStatus status) {
         return loanRepository.getLoanByCriteria(bookId, customerId, status);
     }
+
+    @Override
+    public LoanEntity getOpenedLoan(Long customerId, Long loanId) {
+        return loanRepository.getLoanByCriteria(Long.valueOf(customerId), Long.valueOf(loanId), LoanStatus.OPENED);
+    }
+
+    @Override
+    public LoanEntity closedLoan(LoanEntity loan) {
+        loan.setStatus(LoanStatus.CLOSED);
+        return loanRepository.save(loan);
+    }
+
+    @Override
+    public LoanEntity saveLoan(LoanEntity loan) {
+        return loanRepository.save(loan);
+    }
+
+    @Override
+    public boolean checkIfLoanExists(Long bookId, Long customerId) {
+        LoanEntity loan = loanRepository.getLoanByCriteria(bookId, customerId, LoanStatus.OPENED);
+        return loan != null;
+    }
 }
