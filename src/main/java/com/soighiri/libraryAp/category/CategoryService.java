@@ -9,5 +9,5 @@ public interface CategoryService {
     void deleteCategoryById(Long categoryId);
     CategoryEntity getCategoryById(Long categoryId);
     List<CategoryEntity> getAllCategories();
-    CategoryEntity getCategoryByName(String categoryName);
+    CategoryEntity getCategoryByCategoryLabel(String categoryLabel);
 }

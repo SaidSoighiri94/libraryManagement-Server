@@ -31,5 +31,9 @@ public class BookController {
     public void deleteBook(@PathVariable (name = "bookId") Long bookId) {
         bookService.deleteBookById(bookId);
     }
+    @PostMapping(value = "/addBook")
+    public BookEntity addBook(@RequestBody BookEntity book) {
+        return bookService.saveBook(book);
+    }
 
 }

@@ -43,7 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryEntity getCategoryByName(String categoryName) {
-        return categoryRepository.findByName(categoryName);
+    public CategoryEntity getCategoryByCategoryLabel(String categoryLabel) {
+        return categoryRepository.findByCategoryLabel(categoryLabel);
     }
 }
