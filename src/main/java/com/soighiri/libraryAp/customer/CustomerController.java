@@ -1,10 +1,7 @@
 package com.soighiri.libraryAp.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,10 @@ public class CustomerController {
     @GetMapping(value = "/{customerId}")
     public CustomerEntity getCustomer(@PathVariable Long customerId){
         return customerService.getCustomerById(customerId);
+    }
+    @DeleteMapping(value = "/delete/{customerId}")
+    public void deleteCustomer(@PathVariable Long customerId){
+        customerService.deleteCustomerById(customerId);
     }
 
 }

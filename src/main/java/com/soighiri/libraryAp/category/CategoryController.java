@@ -1,6 +1,7 @@
 package com.soighiri.libraryAp.category;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,12 +15,19 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
     @GetMapping(value = "/customers")
-    public List<CategoryEntity> getCategories() {
-        return categoryService.getAllCategories();
+    public ResponseEntity<List<CategoryEntity>> getCategories() {
+        List<CategoryEntity> categoryEntities = categoryService.getAllCategories();
+        return ResponseEntity.ok(categoryEntities);
     }
     @GetMapping(value = "/{categoryId}")
-    public CategoryEntity getCategory(@PathVariable Long categoryId) {
-        return categoryService.getCategoryById(categoryId);
+    public ResponseEntity<CategoryEntity> getCategoryById(@PathVariable("categoryId") Long categoryId) {
+        CategoryEntity categoryEntity = categoryService.getCategoryById(categoryId);
+        if(categoryEntity != null) {
+            return ResponseEntity.ok(categoryEntity);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
     @PostMapping(value = "/addCategory")
     public CategoryEntity addCategory(@RequestBody CategoryEntity category) {
