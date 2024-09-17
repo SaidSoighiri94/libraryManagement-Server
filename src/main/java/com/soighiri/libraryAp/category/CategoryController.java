@@ -14,7 +14,7 @@ public class CategoryController {
     public CategoryController(final CategoryService categoryService) {
         this.categoryService = categoryService;
     }
-    @GetMapping(value = "/customers")
+    @GetMapping(value = "/categories")
     public ResponseEntity<List<CategoryEntity>> getCategories() {
         List<CategoryEntity> categoryEntities = categoryService.getAllCategories();
         return ResponseEntity.ok(categoryEntities);
@@ -27,10 +27,40 @@ public class CategoryController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+    @PostMapping(value = "/createCategory")
+    public ResponseEntity<CategoryEntity> createCategory(@RequestBody CategoryEntity categoryEntity) {
+        CategoryEntity savedCategory = categoryService.saveCategory(categoryEntity);
+        return ResponseEntity.ok(savedCategory);
+    }
+    @PutMapping(value = "/updateCategorie/{categoryId}")
+    public ResponseEntity<CategoryEntity> updateCategory(@PathVariable Long categoryId,  @RequestBody CategoryEntity categoryEntity){
+       categoryEntity.setIdCategory(categoryId);
+        CategoryEntity updatedCategory = categoryService.updateCategory(categoryEntity);
+        if (updatedCategory == null) {
+         return ResponseEntity.notFound().build();
+        } else
+            return ResponseEntity.ok(updatedCategory);
+    }
+    @DeleteMapping(value = "/delete/{categoryId}")
+    public ResponseEntity<Void> deleteCategoryById( @PathVariable Long categoryId){
+        categoryService.deleteCategoryById(categoryId);
+        return ResponseEntity.noContent().build();
+    }
+    @DeleteMapping(value = "/delete")
+    public ResponseEntity<Void> deleteCategory(@RequestBody CategoryEntity categoryEntity){
+        categoryService.deleteCategory(categoryEntity);
+        return ResponseEntity.noContent().build();
+    }
 
+    @GetMapping(value = "/search/{categoryLabel}")
+    public ResponseEntity<CategoryEntity> getCategoryByLabel(@PathVariable("categoryLabel") String categoryLabel){
+        CategoryEntity categoryEntity = categoryService.getCategoryByCategoryLabel(categoryLabel);
+        if(categoryEntity != null) {
+            return ResponseEntity.ok(categoryEntity);
+        }else  {
+            return ResponseEntity.notFound().build();
+        }
     }
-    @PostMapping(value = "/addCategory")
-    public CategoryEntity addCategory(@RequestBody CategoryEntity category) {
-        return categoryService.saveCategory(category);
-    }
+
 }
