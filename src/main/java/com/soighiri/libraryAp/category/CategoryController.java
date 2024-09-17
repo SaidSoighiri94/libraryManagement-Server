@@ -10,10 +10,12 @@ import java.util.List;
 @RequestMapping(value = "/api/category")
 public class CategoryController {
     private final CategoryService categoryService;
+
     @Autowired
     public CategoryController(final CategoryService categoryService) {
         this.categoryService = categoryService;
     }
+
     @GetMapping(value = "/categories")
     public ResponseEntity<List<CategoryEntity>> getCategories() {
         List<CategoryEntity> categoryEntities = categoryService.getAllCategories();

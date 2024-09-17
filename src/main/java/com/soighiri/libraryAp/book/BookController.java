@@ -47,4 +47,16 @@ public class BookController {
         return bookService.saveBook(book);
     }
 
+    @GetMapping(value = "/search/{title}")
+    public BookEntity getBookByTitle(@PathVariable (name = "title") String title) {
+        return bookService.getBookByTitle(title);
+    }
+    @GetMapping(value = "search/{isbn}")
+    public List<BookEntity> getBookByIsbn(@PathVariable (name = "isbn") String isbn) {
+        return bookService.getBookByIsbn(isbn);
+    }
+
+
+
+
 }
