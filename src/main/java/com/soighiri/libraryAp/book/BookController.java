@@ -56,7 +56,27 @@ public class BookController {
         return bookService.getBookByIsbn(isbn);
     }
 
+    @GetMapping(value = "/search/{author}")
+    public List<BookEntity> getBookByAuthor(@PathVariable (name = "author") String author) {
+        return bookService.getBooksByAuthor(author);
+    }
 
+    @GetMapping(value = "/search/author-title")
+    public List<BookEntity> getBookByAuthorAndTitle(@RequestParam (name = "title") String title,@RequestParam (name = "author") String author) {
+        return bookService.getBooksByTitleAndAuthor(title, author);
+    }
 
+    @GetMapping(value = "search/title-or-author")
+    public List<BookEntity> getBooksByTitlesOrAuthor(@RequestParam (name = "title") String title,@RequestParam (name = "author") String author) {
+        return bookService.getBooksByTitleOrAuthor(title, author);
+    }
+    @GetMapping(value = "/search/{categoryName}")
+    public List<BookEntity> getBooksByCategoryName(@PathVariable (name = "categoryName") String categoryName) {
+        return bookService.getBookByCategoryName(categoryName);
+    }
 
+    @GetMapping(value = "/exists/{bookId}")
+    public boolean existsBook(@PathVariable (name = "bookId") Long bookId) {
+        return bookService.checkIfExist(bookId);
+    }
 }
