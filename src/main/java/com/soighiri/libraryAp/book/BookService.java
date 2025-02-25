@@ -17,5 +17,4 @@ public interface BookService {
     List<BookEntity> getBookByCategoryName(String categoryName);
     boolean checkIfExist(Long bookId);
 
-
 }
